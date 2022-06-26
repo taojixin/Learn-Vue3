@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+
+  <!--  我们在前面练习Vue的过程中，有些代码片段是需要经常写的，我们再VSCode中我们可以生成一个代码片段，方
+便我们快速生成。
+n VSCode中的代码片段有固定的格式，所以我们一般会借助于一个在线工具来完成。
+n 具体的步骤如下：
+p第一步，复制自己需要生成代码片段的代码；
+p第二步，https://snippet-generator.app/在该网站中生成代码片段；
+p第三步，在VSCode中配置代码片段； -->
+
+  <div id="app"></div>
+
+  <template id="my-app">
+    <div>
+      <h2>{{message}}</h2>
+    </div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#my-app",
+      data() {
+        return {
+          message: "0"
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <h2 class="counter">0</h2>
+  <button class="increment">+1</button>
+  <button class="decrement">-1</button>
+
+  <script>
+    // 1.获取元素
+    const counter = document.querySelector(".counter");
+    const increment = document.querySelector(".increment");
+    const decrement = document.querySelector(".decrement");
+    
+    // 2.定义变量
+    let counterNum = 100;
+    counter.innerHTML = counterNum;
+
+    // 3.监听按钮的点击
+    increment.addEventListener('click', () => {
+      counterNum += 1;
+      counter.innerHTML = counterNum;
+    })
+    decrement.addEventListener('click', () => {
+      counterNum -= 1;
+      counter.innerHTML = counterNum;
+    })
+  </script>
+</body>
+</html>
