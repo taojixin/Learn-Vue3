@@ -11,9 +11,12 @@
   <div id="app"></div>
 
   <template id="my-app">
-    <div>
-      <h2>{{message}}</h2>
-    </div>
+    <ul>
+      <!-- 使用template，tempate不会被渲染出来，可以提高效率 -->
+      <template v-for="(value,key) in info">
+        <li>{{key}}:{{value}}</li>
+      </template>
+    </ul>
   </template>
 
   <script src="../js/vue.js"></script>
@@ -22,7 +25,11 @@
       template: "#my-app",
       data() {
         return {
-          message: "0"
+          info: {
+            name: 'tjx',
+            age: 10,
+            height: 1.88
+          }
         }
       }
     }).mount("#app")

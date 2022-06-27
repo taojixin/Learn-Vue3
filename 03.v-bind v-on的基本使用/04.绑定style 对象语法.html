@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <!-- red需要加单引号，否则会一个red为data中的数据 -->
+    <div :style="{color: 'red', fontSize: '20px'}">fafafaf</div>
+    <!-- 用 - 连接的属性需要加引号，不加引号则需要使用小驼峰的写法 -->
+    <div :style="{color: 'red', 'font-size': '20px'}">fafafaf</div>
+    <!-- 拼接 -->
+    <div :style="{color: 'red', 'font-size': num + 'px'}">fafafaf</div>
+    <!-- 也可以直接对象 -->
+    <div :style="styleObj">fafafaf</div>
+    <!-- 也可以时调用方法 -->
+    <div :style="styleObjWay()">fafafaf</div>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#my-app",
+      data() {
+        return {
+          num: 40,
+          styleObj: {
+            'font-size': '20px',
+            fontWeight: 700,
+            backgroundColor: 'blue'
+          }
+        }
+      },
+      methods: {
+        styleObjWay() {
+          return {
+            'font-size': '20px',
+            fontWeight: 700,
+            backgroundColor: 'blue'
+          }
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+
+</html>

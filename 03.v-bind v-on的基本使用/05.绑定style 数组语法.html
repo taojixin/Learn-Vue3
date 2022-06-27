@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,9 +12,8 @@
   <div id="app"></div>
 
   <template id="my-app">
-    <div>
-      <h2>{{message}}</h2>
-    </div>
+    <!-- 数组语法和对象语法结合使用 -->
+    <div :style="[styleObj1, styleObj2]">haha</div>
   </template>
 
   <script src="../js/vue.js"></script>
@@ -22,7 +22,13 @@
       template: "#my-app",
       data() {
         return {
-          message: "0"
+          styleObj1: {
+            color: 'red',
+            fontSize: '30px'
+          },
+          styleObj2: {
+            backgroundColor: "blue"
+          }
         }
       }
     }).mount("#app")

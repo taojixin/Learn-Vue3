@@ -10,10 +10,16 @@
 <body>
   <div id="app"></div>
 
+  <!-- vue2中只能有一个跟元素 -->
+  <!-- 现在vue3中允许有多个根元素 -->
   <template id="my-app">
-    <div>
-      <h2>{{message}}</h2>
-    </div>
+    <!-- 1.基本使用 -->
+    <img v-bind:src="" alt="">
+    <a v-bind:href="link">百度</a>
+
+    <!-- 2.语法糖 -->
+    <img :src="" alt="">
+    <a :href="link">123</a>
   </template>
 
   <script src="../js/vue.js"></script>
@@ -22,7 +28,8 @@
       template: "#my-app",
       data() {
         return {
-          message: "0"
+          imgRrl: "",
+          link: "https://www.baidu.com"
         }
       }
     }).mount("#app")

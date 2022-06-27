@@ -11,9 +11,11 @@
   <div id="app"></div>
 
   <template id="my-app">
-    <div>
-      <h2>{{message}}</h2>
-    </div>
+    <div :class="['abc', className]">hahaha</div>
+    <!-- 支持三目运算符 -->
+    <div :class="['abc', className, isActive ? 'a' : 'b']">hahaha</div>
+    <!-- 与对象语法嵌套使用 -->
+    <div :class="['abc', className, { qiantao: isActive}]">hahaha</div>
   </template>
 
   <script src="../js/vue.js"></script>
@@ -22,7 +24,8 @@
       template: "#my-app",
       data() {
         return {
-          message: "0"
+          className: 'def',
+          isActive: true
         }
       }
     }).mount("#app")

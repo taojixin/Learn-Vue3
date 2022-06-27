@@ -11,9 +11,8 @@
   <div id="app"></div>
 
   <template id="my-app">
-    <div>
-      <h2>{{message}}</h2>
-    </div>
+    <!-- 通过 :[属性名]="属性值" -->
+    <div :[sxName]="sxValue">的说法</div>
   </template>
 
   <script src="../js/vue.js"></script>
@@ -22,7 +21,9 @@
       template: "#my-app",
       data() {
         return {
-          message: "0"
+          message: "0",
+          sxName: 'asd',
+          sxValue: "23"
         }
       }
     }).mount("#app")
