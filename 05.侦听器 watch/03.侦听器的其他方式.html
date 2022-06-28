@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <button @click="change1()">改变了原对象</button>
+    <button @click="change2()">改变了对象里面的内容</button>
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#my-app",
+      data() {
+        return {
+          message: {
+            name: "tjx",
+            age: 21,
+            hobby: {
+              content: "running"
+            }
+          }
+        }
+      },
+      watch: {
+        // 此时侦听器只能侦听对象message整体，不能侦听里面的属性是否变化
+        // message(newValue, oldValue) {
+        //   console.log(`新值：${newValue} 旧值：${oldValue}`);
+        // }
+        // message: {
+        //   handler(newValue, oldValue) {
+        //     console.log(`新值：${newValue.name} 旧值：${oldValue.name}`);
+        //   },
+        //   deep: true, // 深度侦听，这是就可以侦听对象里面属性的变化
+        //   // immediate: true, // 立即执行一次
+        // }
+
+        // 侦听对象里的某个属性
+        // "message.name": {
+        //   handler(newValue, oldValue) {
+        //     console.log(`新值：${newValue} 旧值：${oldValue}`);
+        //   },
+        //   deep: true, // 深度侦听，这是就可以侦听对象里面属性的变化
+        //   // immediate: true, // 立即执行一次
+        // }
+      },
+      methods: {
+        change1() {
+          this.message = {name: "yn"}
+        },
+        change2() {
+          // 深度侦听时的问题：新旧值相同
+          this.message.name = "ayn" // 新值：ayn 旧值：ayn
+        }
+      },
+      created() {
+        // 另一种侦听写法 通过this.$watch进行侦听
+        this.$watch("message", (newValue, oldValue) => {
+          console.log(newValue, oldValue);
+        }, {
+          deep: true,
+          immediate: true
+        })
+      }
+    }).mount("#app")
+  </script>
+</body>
+
+</html>

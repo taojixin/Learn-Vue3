@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app"></div>
+
+  <template id="my-app">
+    <input type="text" v-model="message">
+  </template>
+
+  <script src="../js/vue.js"></script>
+  <script>
+    Vue.createApp({
+      template: "#my-app",
+      data() {
+        return {
+          message: "0"
+        }
+      },
+      // 用于侦听一些值变化时进行一些逻辑处理
+      watch: {
+        // message侦听的data中的属性的名称
+        // newValue变化后的值
+        // oldValue变化前的值
+        message(newValue, oldValue) {
+          console.log(`新值：${newValue} 旧值：${oldValue}`);
+        }
+      }
+    }).mount("#app")
+  </script>
+</body>
+
+</html>
