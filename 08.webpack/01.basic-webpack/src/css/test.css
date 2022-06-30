@@ -1,0 +1,17 @@
+
+:fullscreen {
+
+}
+
+.content {
+  user-select: none;
+  transition: all 2s ease;
+}
+
+.content {
+  color: #12345678;
+}
+
+.bg-img {
+  background-image: url(../img/pgy.png);
+}
