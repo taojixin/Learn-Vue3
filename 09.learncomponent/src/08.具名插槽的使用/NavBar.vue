@@ -1,14 +1,18 @@
 <template>
   <div class="nav-bar">
+
     <div class="left">
       <slot name="left"></slot>
     </div>
+
     <div class="center">
       <slot name="center"></slot>
     </div>
+
     <div class="right">
       <slot name="right"></slot>
     </div>
+    
     <!-- 动态具名插槽 -->
     <div class="addition">
       <slot :name="name"></slot>

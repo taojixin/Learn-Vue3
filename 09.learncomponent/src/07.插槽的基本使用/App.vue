@@ -1,15 +1,18 @@
 <template>
   <div>
-    <!-- 基本使用 -->
+    <!-- 基本使用: 直接插入内容 -->
     <my-slog-cpn>
       <button>我是按钮</button>
     </my-slog-cpn>
+
     <!-- 插入自己的组件 -->
     <my-slog-cpn>
       <my-button></my-button>
     </my-slog-cpn>
+
     <!-- 插槽默认值 -->
-    <my-slog-cpn> </my-slog-cpn>
+    <my-slog-cpn></my-slog-cpn>
+
     <!-- 插入很多内容 -->
     <my-slog-cpn>
       <!-- 所有内容都替换插槽 -->

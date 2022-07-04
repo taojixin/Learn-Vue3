@@ -33,8 +33,7 @@ export default {
   },
   methods: {
     addName() {
-      this.names.push("dsfsdjl")
-      console.log(this.names.length);
+      this.names.push("tjxyn")
     }
   }
 };

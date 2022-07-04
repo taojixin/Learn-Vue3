@@ -13,7 +13,8 @@
       <template v-slot:right>
         <i>右边</i>
       </template>
-
+      
+      <!-- 动态插槽名 -->
       <template v-slot:[name]>
         <i>tjx</i>
       </template>
