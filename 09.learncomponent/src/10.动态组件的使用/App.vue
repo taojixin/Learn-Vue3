@@ -21,6 +21,7 @@
     </template> -->
 
     <!-- 2.动态组件 -->
+    <!-- currentTab的值为components注册的组件，该组件需要设置name值 -->
     <!-- <component :is="currentTab"></component> -->
     <!-- 动态组件传值：通过props进行传递，然后home,about等组件通过props接受 -->
     <!-- <component
