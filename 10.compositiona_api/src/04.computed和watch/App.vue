@@ -1,42 +1,45 @@
 <template>
   <div>
-    <h2>{{ fullName }}</h2>
-    <button @click="changeName">修改firstName</button>
+    <h2 ref="title">哈哈哈</h2>
+    <button @click="changeDate">修改</button>
   </div>
 </template>
 
 <script>
-import { ref, computed } from 'vue'
-  export default {
-    setup() {
-      const fistName = ref("Kobe")
-      const lastName = ref("Bryant")
-
-      // 用法一：传入一个getter函数 computed返回的是一个ref对象
-      // const fullName = computed(() => fistName.value + lastName.value)
-
-      // 用法二：传入一个对象，对象包含getter和setter
-      const fullName = computed({
-        get: () => fistName.value + lastName.value,
-        set(newValue) {
-          const names = newValue.split(" ")
-          fistName.value = names[0]
-          lastName.value = names[1]
-        }
-      })
-
-      const changeName = () => {
-        // fistName.value = 'James'
-        // 因为computed返回值是一个ref所以要使用 .value
-        fullName.value = "hello tjx"
+import { reactive, watch } from "vue";
+export default {
+  setup() {
+    // 定义可响应式对象
+    const info = reactive({
+      name: "tjx",
+      age: 18,
+      friend: {
+        name: 'yinnan'
       }
+    });
 
-      return {
-        fullName,
-        changeName
-      }
-    }
-  }
+    // 侦听器：默认可以深度侦听
+    // watch(info, (newValue, oldValue) => {
+    //   console.log("newValue:", newValue, "oldValue", oldValue);
+    // });
+    // 但是通过这种解构的方式就不能进行深度侦听
+    watch(() => ({...info}), (newValue, oldValue) => {
+      console.log("newValue:", newValue, "oldValue", oldValue);
+    }, {
+      deep: true, // 深度侦听
+      immediate: true, // 立即执行
+    });
+
+    const changeDate = () => {
+      info.friend.name = "yinnanlover";
+    };
+
+    return {
+      changeDate,
+      info,
+    };
+  },
+};
 </script>
 
 <style scoped>

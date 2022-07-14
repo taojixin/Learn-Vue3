@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 // @ts-ignore
-import App from './04.computed和watch/App.vue'
+import App from './08.setup顶层编写方式/App.vue'
 
 const app = createApp(App);
 
