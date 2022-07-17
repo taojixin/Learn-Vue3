@@ -21,7 +21,7 @@ export default {
         console.log("网络i请求成功");
       }, 2000)
 
-      // 根据name和age两个变量清楚额外的副作用
+      // 根据name和age两个变量清除额外的副作用
       onInvalidate(() => {
         // 在这个函数中清楚额外的副作用
         clearTimeout(timer)
