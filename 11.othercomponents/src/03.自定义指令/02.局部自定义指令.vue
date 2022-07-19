@@ -7,14 +7,14 @@
 <script>
   export default {
     // 局部指令
-    // directives: {
-    //   focus: {
-    //     mounted(el) {
-    //       console.log("focus");
-    //       el.focus()
-    //     }
-    //   }
-    // }
+    directives: {
+      focus: {
+        mounted(el) {
+          console.log("focus");
+          el.focus()
+        }
+      }
+    }
   }
 </script>
 
