@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h2>about: {{$route.query.name}}</h2>
+    <h2>mount</h2>
   </div>
 </template>
 

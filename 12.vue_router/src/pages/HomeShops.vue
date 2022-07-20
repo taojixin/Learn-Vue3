@@ -1,6 +1,11 @@
 <template>
   <div>
-    <h2>about: {{$route.query.name}}</h2>
+    <h2>商品组件</h2>
+    <ul>
+      <li>shops1</li>
+      <li>shops2</li>
+      <li>shops3</li>
+    </ul>
   </div>
 </template>
 

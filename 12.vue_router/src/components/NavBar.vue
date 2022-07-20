@@ -1,12 +1,14 @@
 <template>
   <div>
-    <h2>about: {{$route.query.name}}</h2>
+    <h2>{{title}}</h2>
   </div>
 </template>
 
 <script>
   export default {
-    
+    props: {
+      title: String
+    }
   }
 </script>
 
