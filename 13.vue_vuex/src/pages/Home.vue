@@ -1,28 +1,58 @@
 <template>
   <div>
-    <h2>当前计数：{{ $store.state.counter }}</h2>
-    <button @click="increment">+1</button>
-    <button @click="decrement">-1</button>
-    <button @click="increment_n({n:10})">+10</button>
+    <h2>{{ homeCounter }}</h2>
+    <h2>{{ doubleHomeCounter }}</h2>
+    <button @click="increment">home+1</button>
+    <button @click="incrementAction">home+1</button>
     <hr>
   </div>
 </template>
 
 <script>
-import {INCREMENT_N} from '../store/mutation-types'
-import { mapMutations} from 'vuex'
+// import {mapState, mapGetters, mapMutations, mapActions, createNamespacedHelpers} from 'vuex'
+import {createNamespacedHelpers} from 'vuex'
+// const hyMapState = createNamespacedHelpers('home').mapState
+const {mapState, mapGetters, mapMutations, mapActions} = createNamespacedHelpers('home')
 export default {
+  computed: {
+    // 1.写法一：
+    // ...mapState({
+    //   homeCounter: state => state.home.homeCounter
+    // }),
+    // ...mapGetters({
+    //   doubleHomeCounter: 'home/doubleHomeCounter'
+    // }),
+
+    // 写法二：
+    // ...mapState('home', ["homeCounter"]),
+    // ...mapGetters('home', ['doubleHomeCounter'])
+
+    // 写法三：
+    ...mapState(["homeCounter"]),
+    ...mapGetters(['doubleHomeCounter'])
+  },
   methods: {
-    // ...mapMutations(['increment', 'decrement', INCREMENT_N]),
-    // addTen() {
-    //   this.increment_n({n:10})
-    // }
+    // 写法一：
+    // ...mapMutations({
+    //   increment: 'home/increment'
+    // }),
+    // ...mapActions({
+    //   incrementAction: 'home/incrementAction'
+    // })
+
+    // 写法二：
+    // ...mapMutations('home', ['increment']),
+    // ...mapActions('home', ['incrementAction'])
+
+    // 写法三：
+    ...mapMutations(['increment']),
+    ...mapActions(['incrementAction'])
   },
   setup() {
-    const stateMutations = mapMutations(['increment', 'decrement', INCREMENT_N])
+    
 
     return {
-      ...stateMutations
+      // 02:08:53
     }
   }
 };
