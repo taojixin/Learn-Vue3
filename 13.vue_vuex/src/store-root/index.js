@@ -87,7 +87,6 @@ const store = createStore({
           reject(err)
         })
       })
-
     }
   }
 });

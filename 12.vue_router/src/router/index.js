@@ -1,9 +1,7 @@
 // import {createRouter, createWebHashHistory, createWebHistory} from 'vue-router'
 import { createRouter, createWebHistory } from 'vue-router'
 
-// @ts-ignore
 // import Home from '../pages/Home.vue'
-// @ts-ignore
 // import About from '../pages/About.vue'
 
 // 配置映射关系
@@ -14,27 +12,21 @@ const routes = [
   { path: '/', redirect: '/home' },
   {
     path: '/home', name: "home", component: () => {
-      // @ts-ignore
       return import("../pages/Home.vue") // 路由懒加载：完整写法
     },
     children: [
-      // @ts-ignore
       { path: 'message', component: () => import('../pages/HomeMessage.vue') },
-      // @ts-ignore
       { path: 'shops', component: () => import('../pages/HomeShops.vue') },
     ]
   },
   {
-    // @ts-ignore
     path: '/about', component: () => import('../pages/About.vue'),
     meta: {
       name: 'tjx',
       age: 18
     }
   }, // 路由懒加载：简写
-  // @ts-ignore
   { path: '/user/:username/id/:id', component: () => import('../pages/User.vue') },
-  // @ts-ignore
   { path: '/:pathMatch(.*)', component: () => import("../pages/NotFound.vue") },  // 固定写法：'/:pathMatch(.*)'
 ]
 
@@ -47,7 +39,6 @@ const router = createRouter({
 // 动态添加路由
 const categoryRoute = {
   path: '/category',
-  // @ts-ignore
   component: () => import("../pages/Category.vue")
 }
 router.addRoute(categoryRoute)
@@ -55,7 +46,6 @@ router.addRoute(categoryRoute)
 // 给一级路由对象home添加二级路由对象
 router.addRoute('home', {
   path: 'moment',
-  // @ts-ignore
   component: () => import('../pages/HomeMount.vue')
 })
 
