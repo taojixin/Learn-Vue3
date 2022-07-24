@@ -4,3 +4,5 @@ const info = {
   name: 'tjx',
   age: 19
 }
+
+export {}

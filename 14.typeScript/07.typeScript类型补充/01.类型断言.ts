@@ -3,11 +3,9 @@ const el = document.getElementById('tjx') as HTMLImageElement
 el.src = 'url地址'
 
 class Person {
-
 }
 class Student extends Person {
   studying() {
-
   }
 }
 function sayHello(p: Person) {

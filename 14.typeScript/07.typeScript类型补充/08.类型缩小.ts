@@ -47,6 +47,8 @@ function work(p: Student | Teacher) {
 }
 
 // 4.in
+// Javascript 有一个运算符，用于确定对象是否具有带名称的属性：in运算符
+// 如果指定的属性在指定的对象或其原型链中，则in 运算符返回true；
 type Fish = {
   swimming: () => void
 }

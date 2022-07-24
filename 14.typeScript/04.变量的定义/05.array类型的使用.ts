@@ -3,7 +3,6 @@
 // 不好的习惯
 // names.push('abc')
 // names.push(123)
-
 const names: Array<string> = [] // 不推荐（会在react的jsx中有冲突）
 // names.push(123) 报错
 const names2: string[] = [] // 推荐

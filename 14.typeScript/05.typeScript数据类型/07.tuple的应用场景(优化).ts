@@ -1,4 +1,3 @@
-
 function useState<T>(state: T) {
   let currentState = state
 

@@ -1,4 +1,3 @@
-
 type Method = 'GET' | 'POST'
 function request(url: string, method: Method) {}
 

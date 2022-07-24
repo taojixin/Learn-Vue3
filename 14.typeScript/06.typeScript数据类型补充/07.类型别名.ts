@@ -6,8 +6,6 @@ type PointType = {
   z: number
 }
 function printID(id: IDType) {
-
 }
 function printPoint(point: PointType) {
-  
 }

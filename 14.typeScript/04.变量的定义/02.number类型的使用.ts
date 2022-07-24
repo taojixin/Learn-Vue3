@@ -1,8 +1,7 @@
 // ts 不区分整型浮点型
 let num: number = 123
 num =222
-// num = "dfjs"
-
+// num = "dfjs" // 报错
 // 十进制
 let num1: number = 100
 // 二进制
