@@ -1,5 +1,6 @@
 <template>
   <div>login</div>
+  <el-button type="danger"></el-button>
 </template>
 
 <script lang="ts">

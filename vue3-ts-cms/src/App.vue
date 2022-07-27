@@ -1,11 +1,22 @@
 <template>
-  <div id="nav">
-    <router-link to="/login">login</router-link> |
-    <router-link to="/main">main</router-link>
-  </div>
-  <router-view />
-
-  <el-button>按钮</el-button>
+  <div>app</div>
+  <el-button type="danger">app按钮</el-button>
 </template>
 
-<style lang="less"></style>
+<script lang="ts">
+import { defineComponent } from 'vue'
+
+// 手动引入
+// import { ElButton } from 'element-plus'
+// import 'element-plus/theme-chalk/el-button.css'
+// import 'element-plus/theme-chalk/base.css'
+
+export default defineComponent({
+  components: {},
+  setup() {
+    return {}
+  }
+})
+</script>
+
+<style scoped></style>
