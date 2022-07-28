@@ -1,22 +1,37 @@
 {
+  // 编译选项
   "compilerOptions": {
+    // 目标代码
     "target": "esnext",
+    // 目标代码需要使用的模块化方案，umd:多种模块化
     "module": "esnext",
+    // 严格模式检查（any）
     "strict": true,
+    // 对jsx进行怎么样的处理 preserve：不转化，保留
     "jsx": "preserve",
+    // 辅助的导入功能
     "importHelpers": true,
+    // 按照node的方式去解析模块
     "moduleResolution": "node",
+    // 跳过对一些库的类型检测
     "skipLibCheck": true,
+    // es module 和 commonjs是否可以混合使用
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    // 是否生成映射文件ts->js
     "sourceMap": true,
+    // 文件路径在解析时，基本url
     "baseUrl": ".",
+    // 指定具体要解析使用的类型
     "types": ["webpack-env"],
+    // 路径解析（类似于webpack alias）
     "paths": {
       "@/*": ["src/*"]
     },
+    // 可以指定在项目种可以使用哪些类型
     "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
+  // 哪些ts文件需要解析
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
@@ -24,5 +39,6 @@
     "tests/**/*.ts",
     "tests/**/*.tsx"
   ],
+  // 要排除哪些不解析
   "exclude": ["node_modules"]
 }

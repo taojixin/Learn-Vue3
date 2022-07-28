@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import 'normalize.css'
+import './assets/css/index.css'
 // 全局引入elementPlus
 import ElementPlus from 'element-plus'
 // 引入了所有的样式
@@ -18,12 +20,12 @@ app.mount('#app')
 
 // console.log(process.env.VUE_APP_BASE_URL)
 
-tjxRequest.request({
-  url: '/home/mulidata',
-  method: 'GET'
-  // 是否显示loading：默认有
-  // showLoading: false
-})
+// tjxRequest.request({
+//   url: '/home/mulidata',
+//   method: 'GET'
+// 是否显示loading：默认有
+// showLoading: false
+// })
 // tjxRequest.request({
 //   url: '/home/mulidata',
 //   method: 'GET',
@@ -39,17 +41,17 @@ tjxRequest.request({
 //   }
 // })
 
-type DataType = {
-  data: any
-  returnCode: string
-  success: boolean
-}
-tjxRequest
-  .get<DataType>({
-    url: '/home/mulidata'
-  })
-  .then((res) => {
-    console.log(res.data)
-    console.log(res.returnCode)
-    console.log(res.success)
-  })
+// type DataType = {
+//   data: any
+//   returnCode: string
+//   success: boolean
+// }
+// tjxRequest
+//   .get<DataType>({
+//     url: '/home/mulidata'
+//   })
+//   .then((res) => {
+//     console.log(res.data)
+//     console.log(res.returnCode)
+//     console.log(res.success)
+//   })

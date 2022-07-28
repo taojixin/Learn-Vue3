@@ -1,6 +1,7 @@
 <template>
-  <div>app</div>
-  <el-button type="danger">app按钮</el-button>
+  <div class="app">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script lang="ts">
@@ -19,4 +20,8 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.app {
+  height: 100%;
+}
+</style>

@@ -75,7 +75,7 @@ class TJXRequest {
     )
   }
 
-  request<T>(config: TJXRequestConfig): Promise<T> {
+  request<T>(config: TJXRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 单个请求的拦截器
       if (config.interceptors?.requestInterceptor) {
@@ -91,7 +91,7 @@ class TJXRequest {
         .then((res) => {
           // 单个请求对数据的处理
           if (config.interceptors?.responseInterceptor) {
-            config = config.interceptors.responseInterceptor(res)
+            res = config.interceptors.responseInterceptor(res)
           }
           // 将showLoading设置为true，这样不会影响下一个请求
           this.showLoading = true
@@ -107,16 +107,16 @@ class TJXRequest {
     })
   }
 
-  get<T>(config: TJXRequestConfig): Promise<T> {
+  get<T>(config: TJXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: TJXRequestConfig): Promise<T> {
+  post<T>(config: TJXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
-  delete<T>(config: TJXRequestConfig): Promise<T> {
+  delete<T>(config: TJXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
-  patch<T>(config: TJXRequestConfig): Promise<T> {
+  patch<T>(config: TJXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
