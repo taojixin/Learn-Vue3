@@ -15,10 +15,12 @@ class TJXRequest {
 
   constructor(config: TJXRequestConfig) {
     this.instance = axios.create(config)
+
     // 是否需要loading ??:左边有值返回左边的值，没有则使用右边的值
     this.showLoading = config.showLoading ?? true
     // 获取传入的拦截器并保存
     this.interceptors = config.interceptors
+
     // 请求拦截器
     this.instance.interceptors.request.use(
       // 响应成功执行的函数

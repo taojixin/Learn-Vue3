@@ -1,17 +1,19 @@
 // 统一出口
 import TJXRequest from './request'
 import { BASE_URL, TIME_OUT } from './request/config'
+import localCache from '@/utils/cache'
 
 const tjxRequest = new TJXRequest({
   baseURL: BASE_URL,
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
-      // 例子：携带token的拦截
-      // const token = ''
-      // if (token) {
-      //   config.headers.Authorization = `Bearer ${token}`
-      // }
+      // 携带token的拦截
+      const token = localCache.getCache('token')
+      if (token) {
+        // 这里总是报错说对象未定义，这里暂时使用非空断言
+        config.headers!.Authorization = `Bearer ${token}`
+      }
       console.log('请求成功的拦截')
       return config
     },

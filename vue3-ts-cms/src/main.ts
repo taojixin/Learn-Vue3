@@ -2,6 +2,7 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
+import { setupStore } from './store'
 
 import 'normalize.css'
 import './assets/css/index.css'
@@ -10,10 +11,11 @@ import ElementPlus from 'element-plus'
 // 引入了所有的样式
 import 'element-plus/dist/index.css'
 // 封装的axios
-import tjxRequest from './service'
+// import tjxRequest from './service'
 
 const app = createApp(App)
 app.use(store)
+setupStore()
 app.use(router)
 app.use(ElementPlus)
 app.mount('#app')

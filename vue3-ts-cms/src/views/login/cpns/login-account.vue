@@ -31,17 +31,19 @@ export default defineComponent({
 
     const loginAction = (isKeepPassword: boolean) => {
       formRef.value?.validate((valid) => {
-        // 1.判断是否记住密码
-        if (isKeepPassword) {
-          // 本地缓存
-          localCache.setCache('name', account.name)
-          localCache.setCache('password', account.password)
-        } else {
-          localCache.deleteCache('name')
-          localCache.deleteCache('password')
+        if (valid) {
+          // 1.判断是否记住密码
+          if (isKeepPassword) {
+            // 本地缓存
+            localCache.setCache('name', account.name)
+            localCache.setCache('password', account.password)
+          } else {
+            localCache.deleteCache('name')
+            localCache.deleteCache('password')
+          }
+          // 2.开始登录验证
+          store.dispatch('login/accountLoginAction', { ...account })
         }
-        // 2.开始登录验证
-        store.dispatch('login/accountLoginAction', { ...account })
       })
     }
 
