@@ -30,9 +30,9 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
-      const routes = mapMenusToRoutes(userMenus)
-      console.log(routes)
+      const routes = mapMenusToRoutes(userMenus) // 根据菜单获取需要添加的routes
       routes.forEach((route) => {
+        // 添加动态路由
         router.addRoute('main', route)
       })
     }
@@ -73,9 +73,6 @@ const loginModule: Module<ILoginState, IRootState> = {
       if (token) {
         commit('changeUserMenus', userMenus)
       }
-    },
-    phoneLoginAction({ commit }, payload: any) {
-      console.log('执行phoneLoginAction')
     }
   }
 }
