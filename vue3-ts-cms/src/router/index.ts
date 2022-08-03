@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import localCache from '@/utils/cache'
+import { mapMenusToRoutes } from '@/utils/map-menus'
+import store from '@/store'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -35,6 +37,13 @@ router.beforeEach((to) => {
       return '/login'
     }
   }
+
+  const userMenus = (store.state as any).login.userMenus
+  const routes = mapMenusToRoutes(userMenus) // 根据菜单获取需要添加的routes
+  routes.forEach((route) => {
+    // 添加动态路由
+    router.addRoute('main', route)
+  })
 })
 
 export default router

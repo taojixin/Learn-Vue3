@@ -13,14 +13,13 @@
     <span>hhh</span>
   </router-link> -->
 
-  <!-- 作用域插槽 -->
+  <!-- 3.作用域插槽 -->
   <!-- props中有很多东西，如 1.href 以及要跳转的路由对象 2.route 还有 3.navigate导航函数 和 4.isActive 是否当前处于活跃状态-->
   <!-- 注：custom：添加了这个属性router-link中的元素将不再被a标签包裹，同时不能跳转到to的path，需要手动跳转，这时可以使用 navigate 导航函数，跳转到to的path -->
   <router-link to="/home" v-slot="props" custom>
-    <button @click="props.navigate">{{props.href}}</button>
+    <button @click="props.navigate">{{ props.href }}</button>
     <!-- <p>{{props.route}}</p> -->
   </router-link>
-
 
   <router-link to="/about">about</router-link>
   <router-link to="/category">分类</router-link>
@@ -52,12 +51,12 @@ export default {
       // router.push("/about");
       // 2.传递对象
       router.push({
-        path: '/about',
+        path: "/about",
         query: {
-          name: 'yn',
-          age: 18
-        }
-      })
+          name: "yn",
+          age: 18,
+        },
+      });
       // router.replace("/about")\
     };
 
@@ -86,6 +85,6 @@ export default {
 }
 .tjx-enter-active,
 .tjx-leave-active {
-  transition: opacity 1s ease;;
+  transition: opacity 1s ease;
 }
 </style>
