@@ -16,6 +16,7 @@
                   :placeholder="item.placeholder"
                   :show-password="item.type === 'password'"
                   v-bind="item.otherOption"
+                  v-model="formData[`${item.field}`]"
                 />
               </template>
               <template v-else-if="item.type === 'select'">
@@ -23,6 +24,7 @@
                   :placeholder="item.placehold"
                   v-bind="item.otherOption"
                   style="width: 100%"
+                  v-model="formData[`${item.field}`]"
                 >
                   <el-option
                     v-for="option in item.options"
@@ -36,6 +38,7 @@
                 <el-date-picker
                   v-bind="item.otherOption"
                   style="width: 100%"
+                  v-model="formData[`${item.field}`]"
                 ></el-date-picker>
               </template>
             </el-form-item>
@@ -52,6 +55,10 @@ import { IFormItem } from '../types'
 
 export default defineComponent({
   props: {
+    formData: {
+      type: Object,
+      required: true
+    },
     formItems: {
       // 为了限制Array的类型，可以结合PropType进行限制类型
       type: Array as PropType<IFormItem[]>,

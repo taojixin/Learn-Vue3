@@ -5,22 +5,27 @@
       <DArrowLeft v-else />
     </el-icon>
     <div class="content">
-      <div>面包屑</div>
+      <hy-breadcrumb :breadcrumbs="breadcrumbs"></hy-breadcrumb>
       <user-info></user-info>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
 import { DArrowLeft, DArrowRight } from '@element-plus/icons-vue'
 import UserInfo from './user-info.vue'
+import { useStore } from '@/store'
+import { useRoute } from 'vue-router'
+import { pathMapBreadcrumbs } from '@/utils/map-menus'
+import HyBreadcrumb from '@/base-ui/breadcrumb'
 
 export default defineComponent({
   components: {
     DArrowLeft,
     DArrowRight,
-    UserInfo
+    UserInfo,
+    HyBreadcrumb
   },
   emits: ['foldChange'],
   setup(props, { emit }) {
@@ -29,8 +34,19 @@ export default defineComponent({
       isFold.value = !isFold.value
       emit('foldChange', isFold.value)
     }
+    // 面包屑数据
+    const store = useStore()
+    const breadcrumbs = computed(() => {
+      const userMenus = store.state.login.userMenus
+      const route = useRoute()
+      const currentPath = route.path
+      return pathMapBreadcrumbs(userMenus, currentPath)
+    })
+    console.log(breadcrumbs)
+
     return {
       isFold,
+      breadcrumbs,
       handleFoldClick
     }
   }

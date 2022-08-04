@@ -1,7 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import localCache from '@/utils/cache'
-import { mapMenusToRoutes } from '@/utils/map-menus'
-import store from '@/store'
+import { firstMenu } from '@/utils/map-menus'
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
@@ -38,12 +37,9 @@ router.beforeEach((to) => {
     }
   }
 
-  const userMenus = (store.state as any).login.userMenus
-  const routes = mapMenusToRoutes(userMenus) // 根据菜单获取需要添加的routes
-  routes.forEach((route) => {
-    // 添加动态路由
-    router.addRoute('main', route)
-  })
+  if (to.path === '/main') {
+    return firstMenu.url
+  }
 })
 
 export default router
