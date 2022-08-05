@@ -9,7 +9,14 @@
       ></hy-form> -->
       <!-- 合并为一个配置对象 -->
       <!-- <hy-form v-bind="formConfig" /> -->
-      <hy-form v-bind="searchFormConfig" :formData="formData" />
+      <hy-form v-bind="searchFormConfig" :formData="formData">
+        <template #header>
+          <h1>高级检索</h1>
+        </template>
+        <template #footer>
+          <el-button class="primary">重置</el-button>
+        </template>
+      </hy-form>
     </div>
   </div>
 </template>
