@@ -1,0 +1,11 @@
+# 忽略文件，哪些文件不需要格式化
+
+/dist/*
+.local
+.output.js
+/node_modules/**
+
+**/*.svg
+**/*.sh
+
+/public/*
