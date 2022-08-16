@@ -3,8 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ynRequest from './service'
+// 导入element-plus及其样式
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+// css样式初始化
+import 'normalize.css'
+import './assets/css/index.css'
 
 createApp(App).use(store).use(router).use(ElementPlus).mount('#app')
 

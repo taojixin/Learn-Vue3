@@ -1,17 +1,29 @@
 {
+  // 编译选项
   "compilerOptions": {
+    // 目标代码：转为esnext(es5以后)的代码，但这里最终是通过bable转化的
     "target": "esnext",
+    // 目标代码需要使用的模块化方案
     "module": "esnext",
+    // 打开严格的检查
     "strict": true,
+    // 对jsx进行怎样的处理，preserve：不转化
     "jsx": "preserve",
+    // 辅助的导入功能
     "importHelpers": true,
+    // 按照node的方式解析模块
     "moduleResolution": "node",
+    // 跳过对一些库的类型检测
     "skipLibCheck": true,
+    // es module和commonjs是否可以混和使用
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    // 要不要生成映射文件
     "sourceMap": true,
     "baseUrl": ".",
+    // 只当具体要解析使用的类型
     "types": ["webpack-env"],
+    // 路径解析
     "paths": {
       "@/*": ["src/*"]
     },
