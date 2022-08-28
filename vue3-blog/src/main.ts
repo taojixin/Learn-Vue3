@@ -10,7 +10,16 @@ import 'element-plus/dist/index.css'
 import 'normalize.css'
 import './assets/css/index.css'
 
-createApp(App).use(store).use(router).use(ElementPlus).mount('#app')
+import * as ElementPlusIconsVue from '@element-plus/icons-vue'
+
+const app = createApp(App)
+
+// 注册所有图标
+for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
+  app.component(key, component)
+}
+
+app.use(store).use(router).use(ElementPlus).mount('#app')
 
 interface DataType {
   data: any
