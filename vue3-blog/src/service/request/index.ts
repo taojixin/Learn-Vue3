@@ -13,7 +13,6 @@ class YNRequest {
     this.instance = axios.create(config)
     this.insterceptors = config.interceptors
     this.showLoading = config.showLoading ?? false
-    console.log(config.showLoading, this.showLoading)
 
     // 单个实例的拦截器
     this.instance.interceptors.request.use(
@@ -28,7 +27,7 @@ class YNRequest {
     // 所有实例都有的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有实例都有的拦截器：请求拦截成功')
+        // console.log('所有实例都有的拦截器：请求拦截成功')
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -39,19 +38,19 @@ class YNRequest {
         return config
       },
       (err) => {
-        console.log('所有实例都有的拦截器：请求拦截失败')
+        // console.log('所有实例都有的拦截器：请求拦截失败')
         return err
       }
     )
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有实例都有的拦截器：响应拦截成功')
+        // console.log('所有实例都有的拦截器：响应拦截成功')
         // 移除loading
         this.loading?.close()
         return res.data
       },
       (err) => {
-        console.log('所有实例都有的拦截器：响应拦截成功')
+        // console.log('所有实例都有的拦截器：响应拦截成功')
         // 移除loading
         this.loading?.close()
         return err

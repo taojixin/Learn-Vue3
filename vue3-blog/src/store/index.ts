@@ -1,8 +1,23 @@
-import { createStore } from 'vuex'
+import { createStore, storeKey } from 'vuex'
+import login from './login/login'
+import { IRootState } from './types'
 
-export default createStore({
-  state: {},
+const store = createStore<IRootState>({
+  state() {
+    return {
+      name: '',
+      age: 0
+    }
+  },
   mutations: {},
   actions: {},
-  modules: {}
+  modules: {
+    login
+  }
 })
+
+export function setupStore() {
+  store.dispatch('login/loadLocalLogin')
+}
+
+export default store

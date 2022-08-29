@@ -10,6 +10,6 @@ export const rules = {
   ],
   password: [
     { required: true, message: '密码为空', trigger: 'blur' },
-    { min: 8, max: 12, message: '密码为8-12个字母！', trigger: 'blur' }
+    { min: 6, max: 12, message: '密码为6-12个字母！', trigger: 'blur' }
   ]
 }
