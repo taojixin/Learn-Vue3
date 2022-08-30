@@ -50,6 +50,7 @@ const loginModule: Module<ILoginState, IRootState> = {
       const UserMenusResult = await requestUserMenusByRoleId(userInfo.role.id)
       const userMenus = UserMenusResult.data
       commit('changeUserMenus', userMenus)
+      localCache.setCache('userMenus', userMenus)
 
       // 4.跳到首页
       router.push('main')
