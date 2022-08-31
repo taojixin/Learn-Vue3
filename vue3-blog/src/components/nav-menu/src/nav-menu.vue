@@ -5,7 +5,29 @@
       <span class="title">Vue3+TS</span>
       <!-- 导航菜单 -->
       <el-menu default-active="2" class="el-menu-vertical">
-        <template v-for="item in userMenus" :key="item.id"> </template>
+        <template v-for="item in userMenus" :key="item.id">
+          <!-- 二级菜单 -->
+          <template v-if="item.type === 1">
+            <!-- 二级菜单可以展开的标题 -->
+            <el-sub-menu>
+              <template #title>
+                <span>{{ item.name }}</span>
+              </template>
+            </el-sub-menu>
+            <!-- 遍历里面的item -->
+            <template v-for="subitem in item.children" :key="subitem.id">
+              <el-menu-item>
+                <span>{{ subitem.name }}</span>
+              </el-menu-item>
+            </template>
+          </template>
+          <!-- 以及菜单 -->
+          <template v-else-if="item.type === 2">
+            <el-menu-item>
+              <span>{{ item.name }}</span>
+            </el-menu-item>
+          </template>
+        </template>
       </el-menu>
     </div>
   </div>
