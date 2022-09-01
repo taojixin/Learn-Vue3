@@ -28,6 +28,10 @@ const loginModule: Module<ILoginState, IRootState> = {
     },
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
+
+      // 通过userMenu映射routes
+
+      // 将routes添加到router.main.children
     }
   },
   actions: {
