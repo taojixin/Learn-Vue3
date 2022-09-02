@@ -3,6 +3,7 @@
     <div class="header-icon">
       <el-icon><DArrowLeft /></el-icon>
     </div>
+    <div class="content"></div>
   </div>
 </template>
 
