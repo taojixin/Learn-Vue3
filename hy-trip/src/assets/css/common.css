@@ -8,3 +8,15 @@
 body {
   font-size: 14px;
 }
+
+.top-page {
+  position: relative;
+  z-index: 9;
+  height: 100vh;
+  background-color: #fff;
+  overflow-y: auto;
+}
+
+.bottom-gray-line {
+  border-bottom: 1px solid #f2f2f2;
+}

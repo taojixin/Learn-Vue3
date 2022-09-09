@@ -1,5 +1,5 @@
 <template>
-  <div class="home-search-box">
+  <div class="search-box">
     <!-- 位置信息 -->
     <div class="location">
       <div class="city" @click="cityClick">{{ currentCity.cityName }}</div>
@@ -10,47 +10,71 @@
     </div>
 
     <!-- 日期范围 -->
-    <div class="section date-range">
+    <div class="section date-range" @click="showCalendar = true">
       <div class="start">
         <div class="data">
           <span class="tip">入住</span>
-          <span class="time">8月25日</span>
+          <span class="time">{{ startDate }}</span>
         </div>
-        <div class="stay">共一晚</div>
+        <div class="stay">共{{ stayCount }}晚</div>
       </div>
       <div class="end">
         <div class="data">
           <span class="tip">离店</span>
-          <span class="time">8月26日</span>
+          <span class="time">{{ endDate }}</span>
         </div>
       </div>
+    </div>
+    <van-calendar
+      v-model:show="showCalendar"
+      @confirm="onConfirm"
+      type="range"
+      color="#ff9854"
+      :round="false"
+    />
+
+    <!-- 价格和人数选择 -->
+    <div class="section price-counter bottom-gray-line">
+      <div class="start">价格不限</div>
+      <div class="end">人数不限</div>
+    </div>
+    <!-- 关键字 -->
+    <div class="section keyword bottom-gray-line">关键字/位置/民宿名</div>
+
+    <!-- 热门建议 -->
+    <div class="section hot-suggests">
+      <template v-for="(item, index) in hotSuggests" :key="index">
+        <div
+          class="item"
+          :style="{
+            color: item.tagText.color,
+            background: item.tagText.background.color,
+          }"
+        >
+          {{ item.tagText.text }}
+        </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup>
 import useCityStore from "@/stores/modules/city";
+import { ref } from "@vue/reactivity";
 import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
+import { formatMonthDay, getDiffDate } from "@/utils/format_date";
+import useHomeStore from "@/stores/modules/home";
 
 const router = useRouter();
 
-// 获取位置
-// const positionClick = () => {
-//   navigator.geolocation.getCurrentPosition(
-//     (res) => {
-//       console.log(res);
-//     },
-//     (err) => {
-//       console.log("获取失败");
-//     },
-//     {
-//       enableHighAccuracy: true,
-//       timeout: 5000,
-//       maximumAge: 0,
-//     }
-//   );
-// };
+// 定义props
+defineProps({
+  hotSuggests: {
+    type: Array,
+    default: () => [],
+  },
+});
 
 const cityClick = () => {
   router.push("/city");
@@ -59,9 +83,38 @@ const cityClick = () => {
 // 当前城市
 const cityStore = useCityStore();
 const { currentCity } = storeToRefs(cityStore);
+
+// 日期范围的处理
+const nowDate = new Date();
+const newDate = new Date();
+newDate.setDate(nowDate.getDate() + 1);
+const startDate = ref(formatMonthDay(nowDate));
+const endDate = ref(formatMonthDay(newDate));
+const stayCount = ref(getDiffDate(nowDate, newDate));
+// 日期显示
+const showCalendar = ref(false);
+const onConfirm = (value) => {
+  // 1.设置日期
+  const selectStartDate = value[0];
+  const selectEndDate = value[1];
+  startDate.value = formatMonthDay(selectStartDate);
+  endDate.value = formatMonthDay(selectEndDate);
+  stayCount.value = getDiffDate(selectStartDate, selectEndDate);
+  // 隐藏日历
+  showCalendar.value = false;
+};
+
+// 热门建议
+const homeStore = useHomeStore();
+const { hotSuggests } = storeToRefs(homeStore);
 </script>
 
+
 <style lang="less" scoped>
+.search-box {
+  --van-calendar-popup-height: 100%;
+}
+
 .location {
   display: flex;
   align-items: center;
@@ -137,6 +190,28 @@ const { currentCity } = storeToRefs(cityStore);
     text-align: center;
     font-size: 12px;
     color: #666;
+  }
+}
+
+.price-counter {
+  height: 44px;
+  .start {
+    border-right: 1px solid #f8f7f6;
+  }
+}
+
+.keyword {
+  height: 44px;
+}
+
+.hot-suggests {
+  margin: 10px;
+  .item {
+    padding: 4px 8px;
+    border-radius: 14px;
+    font-size: 12px;
+    margin: 4px;
+    line-height: 1;
   }
 }
 </style>
