@@ -5,7 +5,7 @@ const useCityStore = defineStore("city", {
   state: () => ({
     allCities: {},
     // 当前选择的城市
-    currentCity: {cityName: '广州'}
+    currentCity: {cityName: '广州'},
   }),
   actions: {
     async fetchAllCitiesData() {
