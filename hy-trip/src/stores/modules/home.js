@@ -6,6 +6,7 @@ const useHomeStore = defineStore("home", {
     hotSuggests: [],
     categories:[],
     houselist: [],
+    currentPage: 1
   }),
   actions: {
     async fetchHotSuggestsData() {
@@ -17,8 +18,9 @@ const useHomeStore = defineStore("home", {
       this.categories = res.data
     },
     async fetchHouselistData() {
-      const res = await getHomeHouselist()
-      this.houselist = res.data
+      const res = await getHomeHouselist(this.currentPage)
+      this.houselist.push(...res.data)
+      this.currentPage++
     }
   }
 })
