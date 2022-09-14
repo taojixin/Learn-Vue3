@@ -14,14 +14,14 @@
       <div class="start">
         <div class="data">
           <span class="tip">入住</span>
-          <span class="time">{{ startDate }}</span>
+          <span class="time">{{ startDateStr }}</span>
         </div>
         <div class="stay">共{{ stayCount }}晚</div>
       </div>
       <div class="end">
         <div class="data">
           <span class="tip">离店</span>
-          <span class="time">{{ endDate }}</span>
+          <span class="time">{{ endDateStr }}</span>
         </div>
       </div>
     </div>
@@ -70,6 +70,8 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 import { formatMonthDay, getDiffDate } from "@/utils/format_date";
 import useHomeStore from "@/stores/modules/home";
+import useMainStore from "@/stores/modules/main";
+import { computed } from "@vue/runtime-core";
 
 const router = useRouter();
 
@@ -90,20 +92,21 @@ const cityStore = useCityStore();
 const { currentCity } = storeToRefs(cityStore);
 
 // 日期范围的处理
-const nowDate = new Date();
-const newDate = new Date();
-newDate.setDate(nowDate.getDate() + 1);
-const startDate = ref(formatMonthDay(nowDate));
-const endDate = ref(formatMonthDay(newDate));
-const stayCount = ref(getDiffDate(nowDate, newDate));
+const mainStore = useMainStore();
+const { startDate, endDate } = storeToRefs(mainStore);
+
+const startDateStr = computed(() => formatMonthDay(startDate.value));
+const endDateStr = computed(() => formatMonthDay(endDate.value));
+
+const stayCount = ref(getDiffDate(startDate.value, endDate.value));
 // 日期显示
 const showCalendar = ref(false);
 const onConfirm = (value) => {
   // 1.设置日期
   const selectStartDate = value[0];
   const selectEndDate = value[1];
-  startDate.value = formatMonthDay(selectStartDate);
-  endDate.value = formatMonthDay(selectEndDate);
+  mainStore.startDate = selectStartDate;
+  mainStore.endDate = selectEndDate;
   stayCount.value = getDiffDate(selectStartDate, selectEndDate);
   // 隐藏日历
   showCalendar.value = false;

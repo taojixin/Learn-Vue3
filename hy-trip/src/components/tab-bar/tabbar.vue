@@ -36,6 +36,7 @@ const itemClick = (index, item) => {
   right: 0;
   height: 50px;
   display: flex;
+  background-color: white;
 
   border-top: 1px solid #f3f3f3;
 
