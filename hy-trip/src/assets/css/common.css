@@ -2,6 +2,7 @@
   --primary-color: #ff9854;
   /* 修改搜索图标颜色 */
   --van-search-left-icon-color: var(--primary-color) !important;
+  --van-primary-color: var(--primary-color)
 }
 
 
