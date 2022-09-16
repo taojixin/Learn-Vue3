@@ -21,3 +21,10 @@ body {
 .bottom-gray-line {
   border-bottom: 1px solid #f2f2f2;
 }
+
+.icon_check {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  background: url(../img/detail/icon_check.png) 0 0 / 100% 100%;
+}
