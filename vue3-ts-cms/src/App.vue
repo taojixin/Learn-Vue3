@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { defineComponent } from "vue";
 
 // 手动引入
 // import { ElButton } from 'element-plus'
@@ -15,9 +15,9 @@ import { defineComponent } from 'vue'
 export default defineComponent({
   components: {},
   setup() {
-    return {}
-  }
-})
+    return {};
+  },
+});
 </script>
 
 <style scoped lang="less">
