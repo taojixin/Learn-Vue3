@@ -22,7 +22,6 @@ export default function useSlider(wrapperRef) {
     })
 
     sliderVal.on('slideWillChange', (page) => {
-      console.log(page);
       currentPageIndex.value = page.pageX
     })
   })
