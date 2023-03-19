@@ -1,0 +1,32 @@
+:root {
+    --primary-color: #ff9854;
+    /* --van-index-anchor-sticky-text-color:var(--primary-color) !important;
+    --van-index-bar-index-active-color:var(--primary-color) !important; */
+    /* 修改搜索图标颜色 */
+    --van-search-left-icon-color: var(--primary-color) !important;
+    --van-primary-color: var(--primary-color)
+}
+
+body {
+    font-size: 14px;
+}
+
+/* tabbar的隐藏 */
+.top-page {
+    position: relative;
+    z-index: 9;
+    height: 100vh;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.bottom-gray-line {
+    border-bottom: 1px solid #f2f2f2;
+  }
+  
+  .icon_check {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background: url(../img/detail/icon_check.png) 0 0 / 100% 100%;
+  }
