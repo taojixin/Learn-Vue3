@@ -6,7 +6,6 @@
             <img v-else :src="getAssetURL(item.imageActive)">
             <span class="text">{{ item.text }}</span>
         </div>
-
     </template>
   </div>
 </template>
