@@ -15,7 +15,9 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue'
 import type { FormRules, FormInstance } from 'element-plus'
-
+import useLoginStore from '@/store/login'
+import { ElMessage } from 'element-plus'
+import { localCache } from '@/utils/cache'
 const account = reactive({
   name: 'coderwhy',
   password: '123456'
@@ -34,6 +36,30 @@ const accountRules: FormRules = {
 
 // 定义登录逻辑
 const formRef = ref<FormInstance>()
+const loginStore = useLoginStore()
+function loginAction(isKeep: boolean) {
+  formRef.value?.validate((isValid) => {
+    if (isValid) {
+      const name = account.name
+      const password = account.password
+      loginStore.accountLoginAction({ name, password })
+
+      if (isKeep) {
+        localCache.setCache('name', name)
+        localCache.setCache('password', password)
+      } else {
+        localCache.deleteCache('name')
+        localCache.deleteCache('password')
+      }
+    } else {
+      ElMessage.warning({ message: '账号或密码输入的规则错误！' })
+    }
+  })
+}
+
+defineExpose({
+  loginAction
+})
 </script>
 
 <style lang="less" scoped></style>

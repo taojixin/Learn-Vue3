@@ -1,6 +1,7 @@
 import axios from 'axios'
 import type { AxiosInstance, AxiosRequestConfig } from 'axios'
 import type { YRequestConfig } from './type'
+import { localCache } from '@/utils/cache'
 
 class YRequest {
   instance: AxiosInstance
@@ -9,6 +10,10 @@ class YRequest {
     // 全局拦截器
     this.instance.interceptors.request.use(
       (config) => {
+        const token = localCache.getCache('token')
+        if (token && config.headers) {
+          config.headers.Authorization = `Bearer ${token}`
+        }
         return config
       },
       (err) => {
@@ -17,7 +22,7 @@ class YRequest {
     )
     this.instance.interceptors.response.use(
       (config) => {
-        return config
+        return config.data
       },
       (err) => {
         return err
@@ -38,13 +43,13 @@ class YRequest {
     return this.instance.request(config)
   }
 
-  get(config: YRequest) {
+  get(config: YRequestConfig) {
     return this.request({ ...config, method: 'GET' })
   }
-  post(config: YRequest) {
+  post(config: YRequestConfig) {
     return this.request({ ...config, method: 'POST' })
   }
-  delete(config: YRequest) {
+  delete(config: YRequestConfig) {
     return this.request({ ...config, method: 'DELETE' })
   }
 }

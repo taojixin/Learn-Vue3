@@ -9,7 +9,7 @@
             <span class="text">账号登录</span>
           </span>
         </template>
-        <PanelAccount />
+        <PanelAccount ref="accountRef" />
       </el-tab-pane>
       <el-tab-pane name="phone">
         <template #label>
@@ -27,18 +27,28 @@
       <el-checkbox v-model="isKeep" label="记住密码" />
       <el-link type="primary">记住密码</el-link>
     </div>
-    <el-button type="primary" class="login-btn">立即登录</el-button>
+    <el-button type="primary" class="login-btn" @click="loginAction">立即登录</el-button>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import PanelPhone from './panel-phone.vue'
 import PanelAccount from './panel-account.vue'
 import { Iphone, UserFilled } from '@element-plus/icons-vue'
+import { localCache } from '@/utils/cache'
 
 const isKeep = ref<boolean>(false)
 const currentTab = ref('account')
+
+watch(isKeep, (newValue) => {
+  localCache.setCache('rem_pwd', newValue)
+})
+
+const accountRef = ref<InstanceType<typeof PanelAccount>>()
+function loginAction() {
+  accountRef.value?.loginAction(isKeep.value)
+}
 </script>
 
 <style lang="less" scoped>

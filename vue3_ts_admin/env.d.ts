@@ -5,3 +5,5 @@ declare module '*.vue' {
   const src: DefineComponent
   export default src
 }
+
+declare module '*.mjs'
