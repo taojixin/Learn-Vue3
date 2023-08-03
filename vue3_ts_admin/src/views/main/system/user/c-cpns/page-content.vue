@@ -2,7 +2,7 @@
   <div class="content">
     <div class="header">
       <h3 class="title">用户列表</h3>
-      <el-button type="primary">新建用户</el-button>
+      <el-button type="primary" @click="handleNewData">新建用户</el-button>
     </div>
     <div class="table">
       <el-table :data="usersList" :border="true" style="width: 100%">
@@ -36,6 +36,16 @@
         </el-table-column>
       </el-table>
     </div>
+    <div class="footer">
+      <el-pagination
+        v-model:currentPage="currentPage"
+        v-model:page-size="pageSize"
+        :page-sizes="[10, 20, 30]"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="usersTotalCount"
+        @current-change="handleCurrentChange"
+      />
+    </div>
   </div>
 </template>
 
@@ -44,6 +54,8 @@ import useSystemStore from '@/store/main/system/system'
 import { ref } from 'vue'
 import { storeToRefs } from 'pinia'
 import { utcFormat } from '@/utils/format'
+
+const emit = defineEmits(['newDataClick', 'editDataClick'])
 
 // 1.请求数据
 const systemStore = useSystemStore()
@@ -57,6 +69,21 @@ function fetchUserListData(queryInfo: any = {}) {
 fetchUserListData()
 // 2.展示数据
 const { usersList, usersTotalCount } = storeToRefs(systemStore)
+
+// 3.绑定分页数据
+function handleCurrentChange() {
+  fetchUserListData()
+}
+
+// 4.新建数据的处理
+function handleNewData() {
+  emit('newDataClick')
+}
+
+// 5.输出和编辑操作
+function handleDeleteClick(id: number) {
+  systemStore.deleteUserData
+}
 </script>
 
 <style scoped lang="less">
